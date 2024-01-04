@@ -52,7 +52,7 @@ const data = {
         },
         {
             "nombre": "Trafalgar Law",
-            "imagen": "law.webp",
+            "imagen": "law.jpg",
             "genero": "Masculino",
             "especie": "Humano",
             "lugar_nacimiento": "North",
