@@ -32,17 +32,17 @@ function App() {
                     <h4>{item.genero}</h4>
                   </div>
                 </div>
-                <div className='item-div'>
+                <div className='item-div item-div-regular'>
                   <div className='content'>
                     <h4>{item.lugar_nacimiento}</h4>
                   </div>
                 </div>
-                <div className='item-div'>
+                <div className='item-div item-div-success'>
                   <div className='content'>
                     <h4>{item.edad}</h4>
                   </div>
                 </div>
-                <div className='item-div'>
+                <div className='item-div item-div-error'>
                   <div className='content'>
                     <h4>{item.recompensa}</h4>
                   </div>
