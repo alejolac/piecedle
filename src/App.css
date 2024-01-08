@@ -32,7 +32,7 @@
   border: 1px solid hsla(0,0%,100%,.59);
   box-sizing: border-box;
   transition: flex-basis .1s ease;
-  flex-basis: calc(4.5% - 4px);
+  flex-basis: calc(5.2% - 4px);
 }
 
 .item-div:before {
@@ -55,6 +55,10 @@
   cursor: default;
   text-shadow: 0 0 3px #000;
   box-shadow: inset 0 0 6px #000;
+}
+
+.content p {
+  font-size: 16px;
 }
 
 .item-img {

@@ -1,7 +1,7 @@
 const data = {
     "personajes": [
         {
-            "nombre": "Luffy",
+            "label": "Luffy",
             "imagen": "luffy.jpeg",
             "genero": "Masculino",
             "especie": "Humano",
@@ -11,7 +11,7 @@ const data = {
             "ocupacion": ["Pirata", "Capitan"]
         },
         {
-            "nombre": "Roronoa Zoro",
+            "label": "Roronoa Zoro",
             "imagen": "zoro.jpg",
             "genero": "Masculino",
             "especie": "Humano",
@@ -21,7 +21,7 @@ const data = {
             "ocupacion": ["Pirata"]
         },
         {
-            "nombre": "Chopper",
+            "label": "Chopper",
             "imagen": "chopper.webp",
             "genero": "Masculino",
             "especie": "Renos humanoide",
@@ -31,7 +31,7 @@ const data = {
             "ocupacion": ["Pirata", "Médico"]
         },
         {
-            "nombre": "Nami",
+            "label": "Nami",
             "imagen": "nami.jpg",
             "genero": "Femenino",
             "especie": "Humano",
@@ -41,7 +41,7 @@ const data = {
             "ocupacion": ["Navegante", "Pirata"]
         },
         {
-            "nombre": "Jinbe",
+            "label": "Jinbe",
             "imagen": "jinbe.jpg",
             "genero": "Masculino",
             "especie": "Gyojin",
@@ -51,7 +51,7 @@ const data = {
             "ocupacion": ["Pirata"]
         },
         {
-            "nombre": "Trafalgar Law",
+            "label": "Trafalgar Law",
             "imagen": "law.jpg",
             "genero": "Masculino",
             "especie": "Humano",
