@@ -6,18 +6,21 @@ import { v4 as uuidv4 } from 'uuid';
 
 // React UI
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Avatar from "@mui/material/Avatar"
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 function App() {
+  const [autoComplete, setAutoComplete] = useState(false)
   const [character, setCharacter] = useState(randomCharacter())
   const [noCheck, setNoCheck] = useState(Data.personajes)
   const [siCheck, setsiCheck] = useState([])
 
   useEffect(() => {
-  }, [])
+    console.log(siCheck);
+    console.log(noCheck);
+  }, [siCheck])
 
   const handleOptionClick = (option) => {
     console.log('Nombre del personaje:', option.label);
@@ -28,6 +31,19 @@ function App() {
     return Data.personajes[val]
   }
 
+  function handleState(objeto) {
+    const newSi = [...siCheck]
+
+    const newNo = noCheck.filter(item => item !== objeto)
+    newSi.push(objeto)
+
+    setNoCheck(newNo)
+    setsiCheck(newSi)
+
+    setAutoComplete(false)
+
+  }
+
   return (
     <>
       {character && (
@@ -35,7 +51,8 @@ function App() {
           <h1>One Piecedle</h1>
           <div className='search'>
             <Autocomplete
-              disablePortal
+              open={autoComplete}
+              clearOnEscape
               noOptionsText={"No se a encontrado ese Personaje"}
               id="combo-box-demo"
               options={noCheck}
@@ -54,7 +71,7 @@ function App() {
                     color: 'white',
                   }}
                   onClick={() => {
-                    handleOptionClick(option);
+                    handleState(option);
                   }}
                 >
                   <Avatar
@@ -66,15 +83,15 @@ function App() {
                   <Typography>{option.label}</Typography>
                 </Box>
               )}
-              sx={{ width: 300, zIndex: 'unset', '& .MuiAutocomplete-listbox': { backgroundColor: '#1E2328' } }}
-              renderInput={(params) => <TextField variant="standard" {...params} label="Personajes" />}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
           </div>
           <div className='item-head'>
-            {
+            { 
               siCheck.length > 0 && (
                 <div className="item-head-container">
-                  {siCheck.map((item) => (
+                   {siCheck.map((item) => (
                     <div className='item' key={item.label}>
                       <div className='item-div'>
                         <div className='content'>
