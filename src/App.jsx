@@ -22,10 +22,6 @@ function App() {
     console.log(noCheck);
   }, [siCheck])
 
-  const handleOptionClick = (option) => {
-    console.log('Nombre del personaje:', option.label);
-  };
-
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
     return Data.personajes[val]
@@ -33,15 +29,14 @@ function App() {
 
   function handleState(objeto) {
     const newSi = [...siCheck]
-
+    ////
     const newNo = noCheck.filter(item => item !== objeto)
-    newSi.push(objeto)
-
+    newSi.unshift(objeto)
+    ////
     setNoCheck(newNo)
     setsiCheck(newSi)
-
+    ////
     setAutoComplete(false)
-
   }
 
   return (
@@ -84,14 +79,14 @@ function App() {
                 </Box>
               )}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
+              renderInput={(params) => <TextField  onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
           </div>
           <div className='item-head'>
-            { 
+            {
               siCheck.length > 0 && (
                 <div className="item-head-container">
-                   {siCheck.map((item) => (
+                  {siCheck.map((item) => (
                     <div className='item' key={item.label}>
                       <div className='item-div'>
                         <div className='content'>
