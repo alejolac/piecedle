@@ -84,8 +84,45 @@ function App() {
           </div>
           <div className='item-head'>
             {
-              siCheck.length > 0 && (
+              siCheck.length > 0 && (         
                 <div className="item-head-container">
+                  <div className='item' >
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                      <div className='item-div item-div-cat' style={{ border: "none" }}>
+                        <div className='content'>
+                          Personaje
+                        </div>
+                      </div>
+                  </div>
                   {siCheck.map((item) => (
                     <div className='item' key={item.label}>
                       <div className='item-div'>
