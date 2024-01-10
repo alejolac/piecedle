@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Data from "./assets/data.jsx"
 import { v4 as uuidv4 } from 'uuid';
-
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 // React UI
 import TextField from '@mui/material/TextField';
@@ -16,6 +16,7 @@ function App() {
   const [character, setCharacter] = useState(randomCharacter())
   const [noCheck, setNoCheck] = useState(Data.personajes)
   const [siCheck, setsiCheck] = useState([])
+  const [parent, enableAnimations] = useAutoAnimate()
 
   useEffect(() => {
     console.log(siCheck);
@@ -82,86 +83,108 @@ function App() {
               renderInput={(params) => <TextField  onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
           </div>
-          <div className='item-head'>
+          <div ref={parent} className='item-head'>
             {
               siCheck.length > 0 && (         
                 <div className="item-head-container">
                   <div className='item' >
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
                           Personaje
                         </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                      <div className='item-div item-div-cat' style={{ border: "none" }}>
-                        <div className='content'>
-                          Personaje
-                        </div>
-                      </div>
-                  </div>
-                  {siCheck.map((item) => (
-                    <div className='item' key={item.label}>
-                      <div className='item-div'>
-                        <div className='content'>
-                          <img className='item-img' src={item.imagen} alt="" />
-                        </div>
-                      </div>
-                      <div className='item-div'>
-                        <div className='content'>
-                          <p>{item.especie}</p>
-                        </div>
-                      </div>
-                      <div className='item-div'>
-                        <div className='content'>
-                          <p>{item.genero}</p>
-                        </div>
-                      </div>
-                      <div className='item-div item-div-regular'>
-                        <div className='content'>
-                          <p>{item.lugar_nacimiento}</p>
-                        </div>
-                      </div>
-                      <div className='item-div item-div-success'>
-                        <div className='content'>
-                          <p>{item.edad}</p>
-                        </div>
-                      </div>
-                      <div className='item-div item-div-error'>
-                        <div className='content'>
-                          <p>{item.recompensa}</p>
-                        </div>
-                      </div>
-                      <div className='item-div'>
-                        <div className='content'>
-                          <p>{item.ocupacion[0]} , {item.ocupacion[1]}</p>
-                        </div>
+                        <hr />
                       </div>
                     </div>
-                  ))}
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Raza
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Genero
+                        </div>
+                        <hr />
+                      </div>
+                    </div>  <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Origen
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Edad
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Recompensa
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Ocupacion
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                  </div>
+                  <div ref={parent}>
+                    {siCheck.map((item) => (
+                      <div className='item' key={item.label}>
+                        <div className='item-div'>
+                          <div className='content'>
+                            <img className='item-img' src={item.imagen} alt="" />
+                          </div>
+                        </div>
+                        <div className='item-div'>
+                          <div className='content'>
+                            <p>{item.especie}</p>
+                          </div>
+                        </div>
+                        <div className='item-div'>
+                          <div className='content'>
+                            <p>{item.genero}</p>
+                          </div>
+                        </div>
+                        <div className='item-div item-div-regular'>
+                          <div className='content'>
+                            <p>{item.lugar_nacimiento}</p>
+                          </div>
+                        </div>
+                        <div className='item-div item-div-success'>
+                          <div className='content'>
+                            <p>{item.edad}</p>
+                          </div>
+                        </div>
+                        <div className='item-div item-div-error'>
+                          <div className='content'>
+                            <p>{item.recompensa}</p>
+                          </div>
+                        </div>
+                        <div className='item-div'>
+                          <div className='content'>
+                            <p>{item.ocupacion[0]} , {item.ocupacion[1]}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>              
                 </div>
               )
             }

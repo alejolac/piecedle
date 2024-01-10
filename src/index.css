@@ -1,11 +1,23 @@
-body {
+html {
   background-color: #1E2328;
   color: white;
   font-family: monospace !important;
   background-image: url("../public/fondo3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+  position: relative;
 }
+
+html::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.4); /* Color semitransparente para oscurecer */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+} 
 
 .MuiPaper-root  {
   background-color: #1E2328!important;
