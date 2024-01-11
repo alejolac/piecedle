@@ -31,6 +31,8 @@ function App() {
     console.log(data);
     const characterValue = character[data];
     const objValues = obj[index][data];
+
+    if (data == "imagen") return "item-div"
     ////
     if (objValues == characterValue) return "item-div item-div-success"
     ////
@@ -48,7 +50,7 @@ function App() {
   }
 
   function handleValues(key, val) {
-    let value 
+    if (key == "label") return  
     if (key == "imagen") return <img className='item-img' src={val} alt="" />
     if (key == "ocupacion") return <p>{val[0]} / {val[1]}</p>
     return  <p>{val}</p>
@@ -179,47 +181,14 @@ function App() {
                     {siCheck.map((item, index) => (
                       <div className='item' key={item.label}>
                         {Object.entries(item).map(([key, val]) => (
-                          <div className={checkValue(key, siCheck, index)}>
-                            <div className="content">
-                                {handleValues(key, val)}
+                          key !== "label" && (
+                            <div key={uuidv4()} className={checkValue(key, siCheck, index)}>
+                              <div className="content">
+                                  {handleValues(key, val)}
+                              </div>
                             </div>
-                          </div>
+                          )
                         ))}
-                        <div className='item-div'>
-                          <div className='content'>
-                            <img className='item-img' src={item.imagen} alt="" />
-                          </div>
-                        </div>
-                        <div className={checkValue("especie", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.especie}</p>
-                          </div>
-                        </div>
-                        <div className={checkValue("genero", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.genero}</p>
-                          </div>
-                        </div>
-                        <div className={checkValue("lugar_nacimiento", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.lugar_nacimiento}</p>
-                          </div>
-                        </div>
-                        <div className={checkValue("edad", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.edad}</p>
-                          </div>
-                        </div>
-                        <div className={checkValue("recompensa", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.recompensa}</p>
-                          </div>
-                        </div>
-                        <div className={checkValue("ocupacion", siCheck, index)}>
-                          <div className='content'>
-                            <p>{item.ocupacion[0]} / {item.ocupacion[1]}</p>
-                          </div>
-                        </div>
                       </div>
                     ))}
                   </div>
