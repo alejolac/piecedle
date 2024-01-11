@@ -28,10 +28,15 @@ function App() {
   }
 
   function checkValue(data, obj, index) {
+    console.log(data);
     const characterValue = character[data];
     const objValues = obj[index][data];
     ////
     if (objValues == characterValue) return "item-div item-div-success"
+    ////
+    if (data == "recompensa") { 
+      return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
+    }
     ////
     if (Array.isArray(characterValue) && Array.isArray(objValues)) {
       const hasCommonValue = objValues.some(val => characterValue.includes(val));
@@ -40,6 +45,13 @@ function App() {
       }
     }
     return "item-div item-div-error";
+  }
+
+  function handleValues(key, val) {
+    let value 
+    if (key == "imagen") return <img className='item-img' src={val} alt="" />
+    if (key == "ocupacion") return <p>{val[0]} / {val[1]}</p>
+    return  <p>{val}</p>
   }
 
   function handleState(objeto) {
@@ -166,6 +178,13 @@ function App() {
                   <div ref={parent}>
                     {siCheck.map((item, index) => (
                       <div className='item' key={item.label}>
+                        {Object.entries(item).map(([key, val]) => (
+                          <div className={checkValue(key, siCheck, index)}>
+                            <div className="content">
+                                {handleValues(key, val)}
+                            </div>
+                          </div>
+                        ))}
                         <div className='item-div'>
                           <div className='content'>
                             <img className='item-img' src={item.imagen} alt="" />

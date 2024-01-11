@@ -30,7 +30,7 @@
   border: 1px solid hsla(0,0%,100%,.59);
   box-sizing: border-box;
   transition: flex-basis .1s ease;
-  flex-basis: calc(5.2% - 4px);
+  flex-basis: calc(6.2% - 30px);
 }
 
 .item-div-cat  .content{
@@ -58,6 +58,10 @@
   cursor: default;
   text-shadow: 0 0 3px #000;
   box-shadow: inset 0 0 6px #000;
+}
+
+.content p {
+  font-size: 14px!important;
 }
 
 .content-cat {
@@ -95,4 +99,46 @@
 
 .item-div-regular {
   background-color: #da820c  
+}
+
+.item-div-top {
+  transition: background-color .3s ease;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.item-div-down {
+  transition: background-color .3s ease;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.item-div-top::after {
+  clip-path: polygon(97% 40%,80% 40%,80% 95%,20% 95%,20% 40%,3% 40%,50% 5%);
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  content: "";
+  z-index: -1;
+  opacity: 1;
+  transition: background-color .3s ease;
+}
+
+.item-div-down::after {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  clip-path: polygon(97% 60%,80% 60%,80% 5%,20% 5%,20% 60%,3% 60%,50% 95%);
+  content: "";
+  z-index: -1;
+  opacity: 1;
+  transition: background-color .3s ease;
 }
