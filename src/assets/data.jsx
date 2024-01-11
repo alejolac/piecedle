@@ -1,3 +1,9 @@
+// Lugar Nacimiento: "Este, Sur, Oeste, Norte, Grand Line, Otro, Desconocido"
+// Ocupacion: "Pirata, Marine, Revolucionario, Capitan, Navegante"
+// Especie: "Humano, Animal, Gyojin"
+
+// Posibles: "Fruta Del Diablo, "
+
 const data = {
     "personajes": [
         {
@@ -24,7 +30,7 @@ const data = {
             "label": "Chopper",
             "imagen": "chopper.webp",
             "genero": "Masculino",
-            "especie": "Renos humanoide",
+            "especie": "Animal",
             "lugar_nacimiento": "Grand Line",
             "edad": 17,
             "recompensa": 100,

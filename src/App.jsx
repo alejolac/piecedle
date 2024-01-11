@@ -12,6 +12,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 function App() {
+  const [win, setWin] = useState(false)
   const [autoComplete, setAutoComplete] = useState(false)
   const [character, setCharacter] = useState(randomCharacter())
   const [noCheck, setNoCheck] = useState(Data.personajes)
@@ -19,13 +20,26 @@ function App() {
   const [parent, enableAnimations] = useAutoAnimate()
 
   useEffect(() => {
-    console.log(siCheck);
-    console.log(noCheck);
   }, [siCheck])
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
     return Data.personajes[val]
+  }
+
+  function checkValue(data, obj, index) {
+    const characterValue = character[data];
+    const objValues = obj[index][data];
+    ////
+    if (objValues == characterValue) return "item-div item-div-success"
+    ////
+    if (Array.isArray(characterValue) && Array.isArray(objValues)) {
+      const hasCommonValue = objValues.some(val => characterValue.includes(val));
+      if (hasCommonValue) {
+        return "item-div item-div-regular";
+      }
+    }
+    return "item-div item-div-error";
   }
 
   function handleState(objeto) {
@@ -38,6 +52,11 @@ function App() {
     setsiCheck(newSi)
     ////
     setAutoComplete(false)
+
+    if (objeto == character) setWin(true)
+    else {
+      console.log("sigue");
+    }
   }
 
   return (
@@ -80,12 +99,12 @@ function App() {
                 </Box>
               )}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField  onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
+              renderInput={(params) => <TextField onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
           </div>
           <div ref={parent} className='item-head'>
             {
-              siCheck.length > 0 && (         
+              siCheck.length > 0 && (
                 <div className="item-head-container">
                   <div className='item' >
                     <div className='item-div item-div-cat' style={{ border: "none" }}>
@@ -145,46 +164,46 @@ function App() {
                     </div>
                   </div>
                   <div ref={parent}>
-                    {siCheck.map((item) => (
+                    {siCheck.map((item, index) => (
                       <div className='item' key={item.label}>
                         <div className='item-div'>
                           <div className='content'>
                             <img className='item-img' src={item.imagen} alt="" />
                           </div>
                         </div>
-                        <div className='item-div'>
+                        <div className={checkValue("especie", siCheck, index)}>
                           <div className='content'>
                             <p>{item.especie}</p>
                           </div>
                         </div>
-                        <div className='item-div'>
+                        <div className={checkValue("genero", siCheck, index)}>
                           <div className='content'>
                             <p>{item.genero}</p>
                           </div>
                         </div>
-                        <div className='item-div item-div-regular'>
+                        <div className={checkValue("lugar_nacimiento", siCheck, index)}>
                           <div className='content'>
                             <p>{item.lugar_nacimiento}</p>
                           </div>
                         </div>
-                        <div className='item-div item-div-success'>
+                        <div className={checkValue("edad", siCheck, index)}>
                           <div className='content'>
                             <p>{item.edad}</p>
                           </div>
                         </div>
-                        <div className='item-div item-div-error'>
+                        <div className={checkValue("recompensa", siCheck, index)}>
                           <div className='content'>
                             <p>{item.recompensa}</p>
                           </div>
                         </div>
-                        <div className='item-div'>
+                        <div className={checkValue("ocupacion", siCheck, index)}>
                           <div className='content'>
-                            <p>{item.ocupacion[0]} , {item.ocupacion[1]}</p>
+                            <p>{item.ocupacion[0]} / {item.ocupacion[1]}</p>
                           </div>
                         </div>
                       </div>
                     ))}
-                  </div>              
+                  </div>
                 </div>
               )
             }

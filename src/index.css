@@ -1,6 +1,6 @@
 html {
   background-color: #1E2328;
-  color: white;
+  color: white!important;
   font-family: monospace !important;
   background-image: url("../public/fondo3.jpg");
   background-repeat: no-repeat;
