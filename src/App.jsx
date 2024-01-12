@@ -28,32 +28,45 @@ function App() {
   }
 
   function checkValue(data, obj, index) {
-    console.log(data);
-    const characterValue = character[data];
-    const objValues = obj[index][data];
+    let characterValue = character[data];
+    let objValues = obj[index][data];
 
     if (data == "imagen") return "item-div"
     ////
     if (objValues == characterValue) return "item-div item-div-success"
     ////
-    if (data == "recompensa") { 
+    if (data == "recompensa" || data == "edad") {
+      if (typeof(objValues) == "string" || typeof(characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
     ////
-    if (Array.isArray(characterValue) && Array.isArray(objValues)) {
+    if (Array.isArray(characterValue) || Array.isArray(objValues)) {
+      if (Array.isArray(characterValue) != Array.isArray(objValues)) {
+        console.log("asd");
+        Array.isArray(characterValue) ? objValues = [objValues] : characterValue = [characterValue]
+      } 
       const hasCommonValue = objValues.some(val => characterValue.includes(val));
-      if (hasCommonValue) {
-        return "item-div item-div-regular";
-      }
+        if (hasCommonValue) {
+          return "item-div item-div-regular";
+        }
     }
     return "item-div item-div-error";
   }
 
   function handleValues(key, val) {
-    if (key == "label") return  
-    if (key == "imagen") return <img className='item-img' src={val} alt="" />
-    if (key == "ocupacion") return <p>{val[0]} / {val[1]}</p>
-    return  <p>{val}</p>
+    if (key === "label") return null;
+    if (key === "imagen") return <img className='item-img' src={val} alt={val} />;
+
+    if (Array.isArray(val) && val.length > 1) {
+      return (
+        <p>
+          {val.map((item, index) => (
+            index === 0 ? item : ` / ${item}`
+          ))}
+        </p>
+      );
+    }
+    return <p>{val}</p>;
   }
 
   function handleState(objeto) {
@@ -107,7 +120,7 @@ function App() {
                     variant="square"
                     src={option.imagen}
                     alt={option.label}
-                    sx={{ width: 56, height: 56, imageRendering: 'pixelated', objectFit: 'cover', border: '2px solid black' }}
+                    sx={{ width: 70, height: 70, border: '2px solid black' }}
                   />
                   <Typography>{option.label}</Typography>
                 </Box>
@@ -132,7 +145,7 @@ function App() {
                     <div className='item-div item-div-cat' style={{ border: "none" }}>
                       <div className='content content-cat'>
                         <div>
-                          Raza
+                          Genero
                         </div>
                         <hr />
                       </div>
@@ -140,7 +153,7 @@ function App() {
                     <div className='item-div item-div-cat' style={{ border: "none" }}>
                       <div className='content content-cat'>
                         <div>
-                          Genero
+                          Raza
                         </div>
                         <hr />
                       </div>
@@ -155,7 +168,7 @@ function App() {
                     <div className='item-div item-div-cat' style={{ border: "none" }}>
                       <div className='content content-cat'>
                         <div>
-                          Edad
+                          Fruta
                         </div>
                         <hr />
                       </div>
@@ -164,6 +177,14 @@ function App() {
                       <div className='content content-cat'>
                         <div>
                           Recompensa
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Edad
                         </div>
                         <hr />
                       </div>
@@ -184,7 +205,7 @@ function App() {
                           key !== "label" && (
                             <div key={uuidv4()} className={checkValue(key, siCheck, index)}>
                               <div className="content">
-                                  {handleValues(key, val)}
+                                {handleValues(key, val)}
                               </div>
                             </div>
                           )
