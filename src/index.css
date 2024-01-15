@@ -24,6 +24,10 @@ html::before {
   color: white!important;
 }
 
+.MuiTooltip-popper[data-popper-placement*="bottom"] .css-1k51tf5-MuiTooltip-tooltip {
+  font-size: 14px!important;
+}
+
 .css-9e5uuu-MuiPaper-root-MuiAutocomplete-paper {
   border-radius: 0!important;
 }

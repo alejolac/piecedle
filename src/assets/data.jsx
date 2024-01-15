@@ -3,18 +3,23 @@
 // Especie: "Humano, Animal, Gyojin, Desconocido"
 // Fruta Diablo: "Paramencia, Logia, Zoan, No tiene, Desconocido"
 
+const state = {
+    "unknow": "unknow",
+}
+
 const data = {
     "personajes": [
         {
             "label": "Luffy",
-            "imagen": "luffy.jpeg",
+            "imagen": "https://avatars.pfptown.com/585/luffy-pfp-1651.png",
             "genero": "Masculino",
             "especie": "Humano",
             "blue": "East Blue",
             "fruta": "Zoan",
             "recompensa": 3000000000,
             "edad": 19,
-            "ocupacion": ["Pirata", "Capitan"]
+            "ocupacion": ["Pirata", "Capitan"],
+            "aparicion": 1999
         },
         {
             "label": "Roronoa Zoro",
@@ -25,7 +30,8 @@ const data = {
             "fruta": "No tiene",
             "recompensa": 1111000000,
             "edad": 21,
-            "ocupacion": ["Espadachin", "Comandante"]
+            "ocupacion": ["Espadachin", "Comandante"],
+            "aparicion": 1999
         },
         {
             "label": "Chopper",
@@ -51,7 +57,7 @@ const data = {
         },
         {
             "label": "Jinbe",
-            "imagen": "jinbe.jpg",
+            "imagen": "https://pbs.twimg.com/media/FYXlrhkUEAAEoXb.jpg",
             "genero": "Masculino",
             "especie": "Gyojin",
             "blue": "Grand Line",
@@ -216,7 +222,7 @@ const data = {
         },
         {
             "label": "Big Mom",
-            "imagen": "big_mom.webp",
+            "imagen": "https://www.egames.news/__export/1677018336442/sites/debate/img/2023/02/21/fan_art_big_dad_one_piece_crop1677018124826.jpg_1538342115.jpg",
             "genero": "Femenino",
             "especie": "Humana",
             "mar": "Grand Line",
@@ -232,7 +238,7 @@ const data = {
             "especie": "Humano",
             "mar": "Grand Line",
             "fruta": "Paramecia",
-            "recompensa": "5046000000",
+            "recompensa": 5046000000,
             "edad": 72,
             "ocupacion": ["Pirata", "Capitán"]
         },

@@ -10,6 +10,7 @@ import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Avatar from "@mui/material/Avatar"
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip';
 
 function App() {
   const [win, setWin] = useState(false)
@@ -35,7 +36,8 @@ function App() {
     ////
     if (objValues == characterValue) return "item-div item-div-success"
     ////
-    if (data == "recompensa" || data == "edad") {
+    if (data == "recompensa" || data == "edad" || data == "aparicion") {
+      console.log(data == "recompensa");
       if (typeof(objValues) == "string" || typeof(characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
@@ -53,9 +55,13 @@ function App() {
     return "item-div item-div-error";
   }
 
-  function handleValues(key, val) {
+  function handleValues(key, val, name) {
     if (key === "label") return null;
-    if (key === "imagen") return <img className='item-img' src={val} alt={val} />;
+    if (key === "imagen") return (
+      <Tooltip title={name} arrow>
+        <img className='item-img' src={val} alt={val} />
+      </Tooltip>
+    )
 
     if (Array.isArray(val) && val.length > 1) {
       return (
@@ -197,6 +203,14 @@ function App() {
                         <hr />
                       </div>
                     </div>
+                    <div className='item-div item-div-cat' style={{ border: "none" }}>
+                      <div className='content content-cat'>
+                        <div>
+                          Aparicion
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
                   </div>
                   <div ref={parent}>
                     {siCheck.map((item, index) => (
@@ -205,7 +219,7 @@ function App() {
                           key !== "label" && (
                             <div key={uuidv4()} className={checkValue(key, siCheck, index)}>
                               <div className="content">
-                                {handleValues(key, val)}
+                                {handleValues(key, val, item.label)}
                               </div>
                             </div>
                           )
