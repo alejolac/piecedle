@@ -23,7 +23,7 @@ const data = {
         },
         {
             "label": "Roronoa Zoro",
-            "imagen": "zoro.jpg",
+            "imagen": "https://wallpapers-clan.com/wp-content/uploads/2022/08/zoro-pfp-1.jpg",
             "genero": "Masculino",
             "especie": "Humano",
             "blue": "West Blue",
@@ -53,7 +53,8 @@ const data = {
             "Fruta": "No Tiene",
             "recompensa": 366000000,
             "edad": 20,
-            "ocupacion": ["Navegante", "Pirata"]
+            "ocupacion": ["Navegante", "Pirata"],
+            "aparicion": 1999,
         },
         {
             "label": "Jinbe",

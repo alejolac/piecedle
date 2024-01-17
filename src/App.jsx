@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar"
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip';
+import Button from "@mui/material/Button"
 
 function App() {
   const [win, setWin] = useState(false)
@@ -19,6 +20,18 @@ function App() {
   const [noCheck, setNoCheck] = useState(Data.personajes)
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event, newInputValue) => {
+    setInputValue(newInputValue);
+  };
+
+  const handleOptionSelected = (event, value) => {
+    // Llama a la función onSelect con el valor seleccionado
+    //onSelect(value);
+    // Reinicia el valor del input
+    setInputValue('');
+  };
 
   useEffect(() => {
   }, [siCheck])
@@ -76,6 +89,8 @@ function App() {
   }
 
   function handleState(objeto) {
+    console.log(objeto);
+    return
     const newSi = [...siCheck]
     ////
     const newNo = noCheck.filter(item => item !== objeto)
@@ -105,7 +120,7 @@ function App() {
               id="combo-box-demo"
               options={noCheck}
               getOptionLabel={(option) => option.label}
-              renderOption={(props, option) => (
+              renderOption={(props, optioBrookn) => (
                 <Box
                   key={uuidv4()}
                   sx={{
@@ -134,6 +149,39 @@ function App() {
               sx={{ width: 300 }}
               renderInput={(params) => <TextField onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
+         <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={noCheck}
+            getOptionLabel={(option) => option.label}
+            inputValue={inputValue}
+            onInputChange={handleInputChange}
+            onChange={handleOptionSelected}
+            isOptionEqualToValue={(option, value) => option.label === value.label || value === ''}
+            renderOption={(props, option) => (
+              <li {...props}>
+                <Avatar
+                  src={option.imagen}
+                  alt={option.label}
+                  sx={{ marginRight: 2, cursor: 'pointer' }}
+                  onClick={() => onAvatarClick(option)}
+                />
+                {option.label}
+              </li>
+            )}
+            sx={{ width: 300 }}
+            renderInput={(params, option) => (
+              <TextField
+                {...params}
+                label="Movie"
+                InputProps={{
+                  ...params.InputProps,
+                  
+                }}
+                sx={{ cursor: 'pointer' }}
+                onClick={() => handleState(option)}
+              />
+            )}          />
           </div>
           <div ref={parent} className='item-head'>
             {

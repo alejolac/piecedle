@@ -30,7 +30,7 @@
   border: 1px solid hsla(0,0%,100%,.59);
   box-sizing: border-box;
   transition: flex-basis .1s ease;
-  flex-basis: calc(8.2% - 22px);
+  flex-basis: calc(5.5% - 22px);
 }
 
 .item-div-cat  .content{
