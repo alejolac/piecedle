@@ -20,18 +20,6 @@ function App() {
   const [noCheck, setNoCheck] = useState(Data.personajes)
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (event, newInputValue) => {
-    setInputValue(newInputValue);
-  };
-
-  const handleOptionSelected = (event, value) => {
-    // Llama a la función onSelect con el valor seleccionado
-    //onSelect(value);
-    // Reinicia el valor del input
-    setInputValue('');
-  };
 
   useEffect(() => {
   }, [siCheck])
@@ -51,7 +39,7 @@ function App() {
     ////
     if (data == "recompensa" || data == "edad" || data == "aparicion") {
       console.log(data == "recompensa");
-      if (typeof(objValues) == "string" || typeof(characterValue) == "string") return "item-div item-div-error";
+      if (typeof (objValues) == "string" || typeof (characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
     ////
@@ -59,11 +47,11 @@ function App() {
       if (Array.isArray(characterValue) != Array.isArray(objValues)) {
         console.log("asd");
         Array.isArray(characterValue) ? objValues = [objValues] : characterValue = [characterValue]
-      } 
+      }
       const hasCommonValue = objValues.some(val => characterValue.includes(val));
-        if (hasCommonValue) {
-          return "item-div item-div-regular";
-        }
+      if (hasCommonValue) {
+        return "item-div item-div-regular";
+      }
     }
     return "item-div item-div-error";
   }
@@ -89,11 +77,14 @@ function App() {
   }
 
   function handleState(objeto) {
+    if (!objeto) {
+      console.error("Objeto no definido");
+      return;
+    }
     console.log(objeto);
-    return
     const newSi = [...siCheck]
     ////
-    const newNo = noCheck.filter(item => item !== objeto)
+    const newNo = noCheck.filter(item => item.label !== objeto.label)
     newSi.unshift(objeto)
     ////
     setNoCheck(newNo)
@@ -105,6 +96,7 @@ function App() {
     else {
       console.log("sigue");
     }
+    return
   }
 
   return (
@@ -120,7 +112,7 @@ function App() {
               id="combo-box-demo"
               options={noCheck}
               getOptionLabel={(option) => option.label}
-              renderOption={(props, optioBrookn) => (
+              renderOption={(props, option) => (
                 <Box
                   key={uuidv4()}
                   sx={{
@@ -149,39 +141,37 @@ function App() {
               sx={{ width: 300 }}
               renderInput={(params) => <TextField onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
             />
-         <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={noCheck}
-            getOptionLabel={(option) => option.label}
-            inputValue={inputValue}
-            onInputChange={handleInputChange}
-            onChange={handleOptionSelected}
-            isOptionEqualToValue={(option, value) => option.label === value.label || value === ''}
-            renderOption={(props, option) => (
-              <li {...props}>
-                <Avatar
-                  src={option.imagen}
-                  alt={option.label}
-                  sx={{ marginRight: 2, cursor: 'pointer' }}
-                  onClick={() => onAvatarClick(option)}
+            <Autocomplete
+              clearOnEscape
+              options={noCheck}
+              id="combo-box-demo"
+              getOptionLabel={(option) => option.label}
+              noOptionsText={"No se a encontrado ese Personaje"}
+              onChange={(event, value) => handleState(value)}
+              isOptionEqualToValue={(option, value) => option.label !== value}
+              renderOption={(props, option) => (
+                <Box
+                  {...props}
+                >
+                  <Avatar
+                    src={option.imagen}
+                    alt={option.label}
+                    sx={{ marginRight: 2, cursor: 'pointer' }}
+                  />
+                  {option.label || ""}
+                </Box>
+              )}
+              sx={{ width: 300 }}
+              renderInput={(params, option) => (
+                <TextField
+                  {...params}
+                  label="Movie"
+                  InputProps={{
+                    ...params.InputProps,
+                  }}
+                  sx={{ cursor: 'pointer' }}
                 />
-                {option.label}
-              </li>
-            )}
-            sx={{ width: 300 }}
-            renderInput={(params, option) => (
-              <TextField
-                {...params}
-                label="Movie"
-                InputProps={{
-                  ...params.InputProps,
-                  
-                }}
-                sx={{ cursor: 'pointer' }}
-                onClick={() => handleState(option)}
-              />
-            )}          />
+              )} />
           </div>
           <div ref={parent} className='item-head'>
             {
