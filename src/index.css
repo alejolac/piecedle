@@ -20,7 +20,7 @@ html::before {
 } 
 
 .MuiPaper-root  {
-  background-color: #1E2328!important;
+  background-color: #1e2935!important;
   color: white!important;
 }
 
@@ -46,4 +46,10 @@ html::before {
 
 ::-webkit-scrollbar-track {
   background-color: #424242;
+}
+
+.css-1wuilmg-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
+  font-size: 16px;
+  color: white;
+  font-family: monospace !important;
 }

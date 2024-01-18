@@ -15,14 +15,30 @@ import Button from "@mui/material/Button"
 
 function App() {
   const [win, setWin] = useState(false)
-  const [autoComplete, setAutoComplete] = useState(false)
   const [character, setCharacter] = useState(randomCharacter())
   const [noCheck, setNoCheck] = useState(Data.personajes)
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
+  const [inputValue, setInputValue] = useState('');
+  const [value, setValue] = useState(null);
 
   useEffect(() => {
   }, [siCheck])
+
+  const clearValue = () => {
+    setValue("");
+  };
+
+  const handleOnChange = (event, newValue) => {
+    
+    console.log(event);
+    if(event == null || event == undefined) {
+      setValue("")
+      return
+    }
+    setInputValue(event.target.value)
+    console.log(event.target.value);
+  };
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
@@ -38,7 +54,6 @@ function App() {
     if (objValues == characterValue) return "item-div item-div-success"
     ////
     if (data == "recompensa" || data == "edad" || data == "aparicion") {
-      console.log(data == "recompensa");
       if (typeof (objValues) == "string" || typeof (characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
@@ -81,7 +96,6 @@ function App() {
       console.error("Objeto no definido");
       return;
     }
-    console.log(objeto);
     const newSi = [...siCheck]
     ////
     const newNo = noCheck.filter(item => item.label !== objeto.label)
@@ -90,8 +104,6 @@ function App() {
     setNoCheck(newNo)
     setsiCheck(newSi)
     ////
-    setAutoComplete(false)
-
     if (objeto == character) setWin(true)
     else {
       console.log("sigue");
@@ -106,43 +118,6 @@ function App() {
           <h1>One Piecedle</h1>
           <div className='search'>
             <Autocomplete
-              open={autoComplete}
-              clearOnEscape
-              noOptionsText={"No se a encontrado ese Personaje"}
-              id="combo-box-demo"
-              options={noCheck}
-              getOptionLabel={(option) => option.label}
-              renderOption={(props, option) => (
-                <Box
-                  key={uuidv4()}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 2,
-                    cursor: 'pointer',
-                    '&:hover': { backgroundColor: '#292D30!important' },
-                    padding: '8px',
-                    backgroundColor: '#1E2328!important',
-                    color: 'white',
-                  }}
-                  onClick={() => {
-                    handleState(option);
-                  }}
-                >
-                  <Avatar
-                    variant="square"
-                    src={option.imagen}
-                    alt={option.label}
-                    sx={{ width: 70, height: 70, border: '2px solid black' }}
-                  />
-                  <Typography>{option.label}</Typography>
-                </Box>
-              )}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField onBlur={() => setAutoComplete(false)} onClick={() => setAutoComplete(true)} variant="standard" {...params} label="Personajes" />}
-            />
-            <Autocomplete
-              clearOnEscape
               options={noCheck}
               id="combo-box-demo"
               getOptionLabel={(option) => option.label}
@@ -156,7 +131,8 @@ function App() {
                   <Avatar
                     src={option.imagen}
                     alt={option.label}
-                    sx={{ marginRight: 2, cursor: 'pointer' }}
+                    variant="square"
+                    sx={{ width: 56, height: 56, marginRight: 2, cursor: 'pointer' }}
                   />
                   {option.label || ""}
                 </Box>
@@ -165,11 +141,14 @@ function App() {
               renderInput={(params, option) => (
                 <TextField
                   {...params}
-                  label="Movie"
+                  value={inputValue}
+                  label="Peronaje"
                   InputProps={{
                     ...params.InputProps,
                   }}
-                  sx={{ cursor: 'pointer' }}
+                  sx={{ 
+                    cursor: 'pointer',
+                  }}
                 />
               )} />
           </div>
