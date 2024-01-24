@@ -18,17 +18,28 @@ import confetti from 'canvas-confetti';
 function App() {
   const [win, setWin] = useState(true)
   const [character, setCharacter] = useState(randomCharacter())
-  const [noCheck, setNoCheck] = useState(Data.personajes)
+  const [noCheck, setNoCheck] = useState(sortCharacters())
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState(null);
+  const [data, setData] = useState(null);
   const autocompleteRef = useRef();
 
 
   useEffect(() => {
     if (!win) confetti()
   }, [win])
+
+  useEffect(() => {
+    setValue("")
+  }, [data])
+
+  function sortCharacters() {
+    let data = Data.personajes
+    data = data.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
+    return data
+  }
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
@@ -50,7 +61,6 @@ function App() {
     ////
     if (Array.isArray(characterValue) || Array.isArray(objValues)) {
       if (Array.isArray(characterValue) != Array.isArray(objValues)) {
-        console.log("asd");
         Array.isArray(characterValue) ? objValues = [objValues] : characterValue = [characterValue]
       }
       const hasCommonValue = objValues.some(val => characterValue.includes(val));
@@ -94,12 +104,8 @@ function App() {
     setNoCheck(newNo)
     setsiCheck(newSi)
     ////
-    console.log(character);
-    if (objeto == character) setWin(false)
-    else {
-      console.log("sigue");
-    }
-    //autocompleteRef.current.blur();
+    objeto == character ? setWin(false) : setWin(true)
+    setData(objeto)
     return
   }
 
@@ -107,44 +113,48 @@ function App() {
     <>
       {character && (
         <div className='container'>
-          <h1 style={{color:'white'}}>One Piecedle</h1>
+          <h1 style={{ color: 'white' }}>One Piecedle</h1>
           <div className='search'>
             {
               win && (
-              <Autocomplete
-                options={noCheck}
-                id="combo-box-demo"Roronoa Zoro
-                getOptionLabel={(option) => option.label}
-                noOptionsText={"No se a encontrado ese Personaje"}
-                onChange={(event, value) => handleState(value)}
-                isOptionEqualToValue={(option, value) => option.label !== value}
-                renderOption={(props, option) => (
-                  <Box
-                    {...props}
-                  >
-                    <Avatar
-                      src={option.imagen}
-                      alt={option.label}
-                      variant="square"
-                      sx={{ width: 56, height: 56, marginRight: 2, cursor: 'pointer' }}
+                <Autocomplete
+                  ref={autocompleteRef}
+                  options={noCheck}
+                  id="combo-box-demo"
+                  value={value}
+                  noOptionsText={"No se a encontrado ese Personaje"}
+                  onChange={(event, value) => {
+                    console.log("asasddas");
+                    setValue(value)
+                    handleState(value)
+                  }}
+                  isOptionEqualToValue={(option, value) => option.label !== value}
+                  renderOption={(props, option) => (
+                    <Box
+                      {...props}
+                    >
+                      <Avatar
+                        src={option.imagen}
+                        alt={option.label}
+                        variant="square"
+                        sx={{ width: 56, height: 56, marginRight: 2, cursor: 'pointer' }}
+                      />
+                      {option.label || ""}
+                    </Box>
+                  )}
+                  sx={{ width: 300 }}
+                  renderInput={(params, option) => (
+                    <TextField
+                      {...params}
+                      label="Peronaje"
+                      InputProps={{
+                        ...params.InputProps,
+                      }}
+                      sx={{
+                        cursor: 'pointer',
+                      }}
                     />
-                    {option.label || ""}
-                  </Box>
-                )}
-                sx={{ width: 300 }}
-                renderInput={(params, option) => (
-                  <TextField
-                    {...params}
-                    value={inputValue}
-                    label="Peronaje"
-                    InputProps={{
-                      ...params.InputProps,
-                    }}
-                    sx={{ 
-                      cursor: 'pointer',
-                    }}
-                  />
-              )}/>
+                  )} />
               )
             }
           </div>
