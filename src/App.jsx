@@ -21,10 +21,8 @@ function App() {
   const [noCheck, setNoCheck] = useState(sortCharacters())
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
-  const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState(null);
   const [data, setData] = useState(null);
-  const autocompleteRef = useRef();
 
   useEffect(() => {
     if (!win) confetti()
@@ -103,6 +101,8 @@ function App() {
   }
 
   function handleState(objeto) {
+    console.log(character);
+    console.log(objeto);
     if (!objeto) {
       console.error("Objeto no definido");
       return;
@@ -115,7 +115,7 @@ function App() {
     setNoCheck(newNo)
     setsiCheck(newSi)
     ////
-    objeto == character ? setWin(false) : setWin(true)
+    objeto.label == character.label ? setWin(false) : setWin(true)
     setData(objeto)
     return
   }

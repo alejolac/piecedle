@@ -4,7 +4,12 @@
 // Fruta Diablo: "Paramencia, Logia, Zoan, No tiene, Desconocido"
 
 const state = {
-    "unknow": "unknow",
+    "unknow": "Desconocida",
+    "no": "No tiene",
+    "caballero": "shichibukai",
+    "para": "Paramecia",
+    "realeza": "Realeza",
+    "pre": "Zoan Prehistórica"
 }
 
 const data = {
@@ -18,11 +23,11 @@ const data = {
             "fruta": "Zoan",
             "recompensa": 3000000000,
             "edad": 19,
-            "ocupacion": ["Pirata", "Capitan"],
+            "ocupacion": ["Capitan", "Pirata"],
             "aparicion": 1999
         },
         {
-            "label": "Roronoa Zoro",
+            "label": "Zoro",
             "imagen": "https://wallpapers-clan.com/wp-content/uploads/2022/08/zoro-pfp-1.jpg",
             "genero": "Masculino",
             "especie": "Humano",
@@ -30,30 +35,31 @@ const data = {
             "fruta": "No tiene",
             "recompensa": 1111000000,
             "edad": 21,
-            "ocupacion": ["Espadachin", "Comandante"],
+            "ocupacion": ["Espadachin", "Comandante", "Pirata"],
             "aparicion": 1999
         },
         {
             "label": "Chopper",
-            "imagen": "chopper.webp",
+            "imagen": "https://static.wikia.nocookie.net/fiveworldadventures/images/6/66/Tony_Tony_Chopper.png",
             "genero": "Masculino",
             "especie": "Animal",
             "blue": "Grand Line",
             "fruta": "Zoan",
             "recompensa": 1000,
             "edad": 17,
-            "ocupacion": ["Pirata", "Médico"]
+            "ocupacion": ["Pirata", "Médico"],
+            "aparicion": 2001
         },
         {
             "label": "Nami",
-            "imagen": "nami.jpg",
+            "imagen": "https://www.dreamtavern.ai/_next/image?url=https%3A%2F%2Frizz-public-assets.s3.us-west-2.amazonaws.com%2Fimages%2F8c117b47-b46a-484e-927a-b7ff639f6a79.png&w=640&q=75",
             "genero": "Femenino",
             "especie": "Humano",
             "blue": "East Blue",
             "Fruta": "No Tiene",
             "recompensa": 366000000,
             "edad": 20,
-            "ocupacion": ["Navegante", "Pirata"],
+            "ocupacion": ["Pirata", "Navegante"],
             "aparicion": 1999,
         },
         {
@@ -65,206 +71,346 @@ const data = {
             "fruta": "No Tiene",
             "recompensa": 1100000000,
             "edad": 46,
-            "ocupacion": ["Pirata"]
+            "ocupacion": ["Pirata", state.caballero],
+            "aparicion": 2009
         },
         {
             "label": "Brook",
-            "imagen": "brook.jpg",
+            "imagen": "https://i.pinimg.com/originals/2e/4c/7b/2e4c7be1dc0ef9d0f578a9c27877af0a.gif",
             "genero": "Masculino",
             "especie": "Humano",
             "blue": "West Blue",
-            "fruta": "Paramecia",
+            "fruta": state.para,
             "recompensa": 383000000,
             "edad": 90,
-            "ocupacion": ["Pirata", "Musico"]
+            "ocupacion": ["Pirata", "Musico", "Espadachin"],
+            "aparicion": 2008
         },
         {
             "label": "Sanji",
-            "imagen": "sanji.jpg",
+            "imagen": "https://i.pinimg.com/originals/3d/0d/97/3d0d9744c192ff7d905a863d0ef335ae.gif",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "North Blue",
+            "blue": "North Blue",
             "fruta": "No tiene",
             "recompensa": 1032000000,
             "edad": 21,
-            "ocupacion": ["Pirata", "Cocinero"]
+            "ocupacion": ["Pirata", "Cocinero"],
+            "aparicion": 2000
         },
         {
             "label": "Usopp",
-            "imagen": "usopp.jpeg",
+            "imagen": "https://i.pinimg.com/originals/5e/ae/15/5eae152bfdb0078c8f97f18c7dbfc886.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "East Blue",
+            "blue": "East Blue",
             "fruta": "No tiene",
             "recompensa": 500000000,
             "edad": 19,
-            "ocupacion": ["Pirata", "Francotirador"]
+            "ocupacion": ["Pirata", "Tirador"],
+            "aparicion": 1999
         },
         {
-            "label": "Nico Robin",
-            "imagen": "nico_robin.jpg",
+            "label": "Robin",
+            "imagen": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c2a4fd09-561a-4019-b2c9-6461fa3db151/denkmme-fe44e66d-4842-49db-bac9-980f928b10eb.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MyYTRmZDA5LTU2MWEtNDAxOS1iMmM5LTY0NjFmYTNkYjE1MVwvZGVua21tZS1mZTQ0ZTY2ZC00ODQyLTQ5ZGItYmFjOS05ODBmOTI4YjEwZWIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.C1kulNJq3N14FAJdWSplXJnQtVKeiLveeOHSTwE9cJ4",
             "genero": "Femenino",
             "especie": "Humana",
-            "mar": "West Blue",
-            "fruta": "Paramencia",
+            "blue": "West Blue",
+            "fruta": state.para,
             "recompensa": 930000000,
             "edad": 30,
-            "ocupacion": ["Pirata"]
+            "ocupacion": ["Pirata"],
+            "aparicion": 2001
         },
         {
-            "label": "Eustass Kid",
-            "imagen": "eustass_kid.jpg",
+            "label": "Kid",
+            "imagen": "https://i.pinimg.com/736x/dd/7c/bd/dd7cbdcd5b45576f6080e793f9a00ec1.jpg",
             "genero": "Masculino",
             "especie": ["Humano", "Cyborg"],
-            "mar": "South Blue",
-            "fruta": "Paramecia",
+            "blue": "South Blue",
+            "fruta": state.para,
             "recompensa": 3000000000,
             "edad": 23,
-            "ocupacion": ["Pirata", "Capitán"]
+            "ocupacion": ["Pirata", "Capitán"],
+            "aparicion": 2009
         },
         {
             "label": "Shanks",
-            "imagen": "shanks.webp",
+            "imagen": "https://lh3.googleusercontent.com/proxy/v63CPca8GgtLPgxJ9voXa7XRTerVKc3OUpkkvqigDCf9VWG7m05UfMXbLaB3na65OLvHrnevrMDf6vHglPjNXwT1BjXAYiEHiouyNX-UppIsogCZ1jOvxvRO7LL8DHmVJ3f3Bj11md22FYCGfXYhdg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "West Blue",
+            "blue": "West Blue",
             "fruta": "No tiene",
             "recompensa": 4048900000,
             "edad": 39,
-            "ocupacion": ["Pirata", "Capitán"]
+            "ocupacion": ["Pirata", "Capitán", "Emperador"],
+            "aparicion": 1999
+        },
+        {
+            "label": "Roger",
+            "imagen": "https://64.media.tumblr.com/fd0d1ded6938d0da548df108fe028d8c/e373942f3b7c9833-b9/s400x600/3dc5a987f32302251c42b0605f335387efabd66e.gif",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "East Blue",
+            "fruta": "No tiene",
+            "recompensa": 5564800000,
+            "edad": 53,
+            "ocupacion": ["Pirata", "Capitán", "REY"],
+            "aparicion": 1999
+        },
+        {
+            "label": "Xebec",
+            "imagen": "https://i.pinimg.com/474x/47/ea/5a/47ea5aa7ec2d716bb2acb1af07759377.jpg",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": state.unknow,
+            "fruta": state.no,
+            "recompensa": state.unknow,
+            "edad": state.unknow,
+            "ocupacion": ["Pirata", "Capitán"],
+            "aparicion": 2021
         },
         {
             "label": "Garp",
-            "imagen": "garp.webp",
+            "imagen": "https://i.pinimg.com/564x/37/db/81/37db8155f82e1d23c82d31b25e0bfc73.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "East Blue",
+            "blue": "East Blue",
             "fruta": "No tiene",
-            "recompensa": "No tiene",
+            "recompensa": state.no,
             "edad": 78,
-            "ocupacion": ["Marine"]
+            "ocupacion": ["Marine", "Vicealmirante"],
+            "aparicion": 2001
         },
         {
-            "label": "Monkey D. Dragon",
-            "imagen": "monkey_d_dragon.jpg",
+            "label": "Dragon",
+            "imagen": "https://i.pinimg.com/originals/cc/e5/ca/cce5ca7c6957c4694ab7fe30b0cdcf6e.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "East Blue",
-            "fruta": "Desconocida",
-            "recompensa": "Desconocida",
+            "blue": "East Blue",
+            "fruta": state.unknow,
+            "recompensa": state.unknow,
             "edad": 55,
-            "ocupacion": ["Revolucionario"]
+            "ocupacion": ["Revolucionario"],
+            "Aparicion": 2000
         },
         {
             "label": "Franky",
-            "imagen": "franky.webp",
+            "imagen": "https://static.wikia.nocookie.net/onepiece-fairytail/images/3/35/Franky.png",
             "genero": "Masculino",
             "especie": ["Humano", "Cyborg"],
-            "mar": "South Blue",
+            "blue": "South Blue",
             "fruta": "No tiene",
             "recompensa": 394000000,
             "edad": 36,
-            "ocupacion": ["Pirata"]
+            "ocupacion": ["Pirata"],
+            "aparicion": 2005
         },
         {
             "label": "Sabo",
-            "imagen": "sabo.webp",
+            "imagen": "https://i.pinimg.com/originals/b8/3e/55/b83e5589d93653272885beaefd11651c.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "East Blue",
+            "blue": "East Blue",
             "fruta": "Logia",
             "recompensa": 602000000,
             "edad": 22,
-            "ocupacion": ["Revolucionario"]
+            "ocupacion": ["Revolucionario"],
+            "aparicion": 2011
         },
         {
             "label": "Ace",
-            "imagen": "ace.jpg",
+            "imagen": "https://i.pinimg.com/736x/63/df/d2/63dfd2a0a58e98b6cd1d4f21b6cd15d2.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "South Blue",
+            "blue": "South Blue",
             "fruta": "Logia",
             "recompensa": 550000000,
             "edad": 20,
-            "ocupacion": ["Pirata"]
+            "ocupacion": ["Pirata", "Comandadnte"],
+            "aparicion": 2001
         },
         {
             "label": "Vivi",
-            "imagen": "vivi.jpg",
+            "imagen": "https://i.pinimg.com/originals/03/69/ee/0369eee9afe3587e90704d834be0a889.jpg",
             "genero": "Femenino",
-            "especie": "Humana",
-            "mar": "Grand Line",
-            "fruta": "No tiene",
-            "recompensa": "No Tiene",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.no,
             "edad": 18,
-            "ocupacion": ["Princesa"]
+            "ocupacion": [state.realeza],
+            "aparicion": 1999
         },
         {
             "label": "Katakuri",
-            "imagen": "katakuri.webp",
+            "imagen": "https://i.pinimg.com/originals/40/10/f7/4010f77fc43fa928f82e27361ef21fe4.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "Grand Line",
-            "fruta": "Paramecia",
+            "blue": "Grand Line",
+            "fruta": state.para,
             "recompensa": 1057000000,
             "edad": 48,
-            "ocupacion": ["Pirata", "Comandante"]
+            "ocupacion": ["Pirata", "Comandante"],
+            "aparicion": 2018
         },
         {
             "label": "Kaido",
-            "imagen": "kaido.webp",
+            "imagen": "https://i.pinimg.com/736x/6d/4b/38/6d4b381f2a5d7ae710651a834fff150f.jpg",
             "genero": "Masculino",
             "especie": "Oni",
-            "mar": "Grand Line",
-            "fruta": "Zoan",
+            "blue": "Grand Line",
+            "fruta": "Zoan Mitica",
             "recompensa": 4600000000,
             "edad": 59,
-            "ocupacion": ["Pirata", "Capitan"]
+            "ocupacion": ["Pirata", "Capitan", "Emperador"],
+            "aparicion": 2016
+        },
+        {
+            "label": "Yamato",
+            "imagen": "https://i.redd.it/zu9qc9lu0f9b1.jpg",
+            "genero": "Femenino",
+            "especie": "Oni",
+            "blue": "Grand Line",
+            "fruta": "Zoan Mitica",
+            "recompensa": state.no,
+            "edad": 28 ,
+            "ocupacion": ["Pirata"],
+            "aparicion": 2021
+        },
+        {
+            "label": "King",
+            "imagen": "https://i.pinimg.com/736x/57/cd/82/57cd825fb6e0e2dd9a295b778ed96f8d.jpg",
+            "genero": "Masculino",
+            "especie": "Lunaria",
+            "blue": "Grand Line",
+            "fruta": state.pre,
+            "recompensa":  1390000000,
+            "edad": 47,
+            "ocupacion": ["Pirata", "Comandante"],
+            "aparicion": 2019
         },
         {
             "label": "Big Mom",
-            "imagen": "https://www.egames.news/__export/1677018336442/sites/debate/img/2023/02/21/fan_art_big_dad_one_piece_crop1677018124826.jpg_1538342115.jpg",
+            "imagen": "https://i.pinimg.com/736x/f8/3f/f2/f83ff2840617e00da4c9e803acb7944c.jpg",
             "genero": "Femenino",
-            "especie": "Humana",
-            "mar": "Grand Line",
-            "fruta": "Paramecia",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": state.para,
             "recompensa": 4700000000,
             "edad": 68,
-            "ocupacion": ["Pirata", "Capitana", "Emperatriz"]
+            "ocupacion": ["Pirata", "Capitan", "Emperador"],
+            "aparicion": 2012
         },
         {
             "label": "Barbablanca",
-            "imagen": "barbablanca.webp",
+            "imagen": "https://pm1.aminoapps.com/6349/cd23e9e89864019927c77063141b86a5c061352d_00.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "Grand Line",
-            "fruta": "Paramecia",
+            "blue": "Grand Line",
+            "fruta": state.para,
             "recompensa": 5046000000,
             "edad": 72,
-            "ocupacion": ["Pirata", "Capitán"]
+            "ocupacion": ["Pirata", "Capitán"],
+            "aparicion": 2003
+        },
+        {
+            "label": "Marco",
+            "imagen": "https://i.pinimg.com/1200x/d2/48/63/d248632c7db52b197fd4ccae1981f0a0.jpg",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": "Zoan Mitica",
+            "recompensa": 1374000000,
+            "edad": 45,
+            "ocupacion": ["Pirata", "Comandante", "Medico"],
+            "aparicion": 2003
         },
         {
             "label": "Barbanegra",
-            "imagen": "barbanegra.webp",
+            "imagen": "https://static.wikia.nocookie.net/saintpirates/images/d/d0/Marshall_D._Teach.png",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "Grand Line",
-            "fruta": "Paramecia",
+            "blue": "Grand Line",
+            "fruta": "Logia",
             "recompensa": 3996000000,
             "edad": 40,
-            "ocupacion": ["Pirata", "Capitán"]
+            "ocupacion": ["Pirata", "Capitán", "Emperador"],
+            "aparicion": 2003
         },
         {
             "label": "Buggy",
-            "imagen": "buggy.webp",
+            "imagen": "https://i.pinimg.com/originals/38/1a/eb/381aeb3ece63f397508d78e2011ba52c.jpg",
             "genero": "Masculino",
             "especie": "Humano",
-            "mar": "East Blue",
-            "fruta": "Paramecia",
+            "blue": "East Blue",
+            "fruta": state.para,
             "recompensa": 3189000000,
             "edad": 39,
-            "ocupacion": ["Pirata", "Capitán"]
+            "ocupacion": ["Pirata", "Capitán", "Emperador"],
+            "aparicion": 1999
+        },
+        {
+            "label": "Cobra",
+            "imagen": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Nefertari_Cobra_Anime_Pre_Timeskip_Infobox.png",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.no,
+            "edad": 50,
+            "ocupacion": ["Realeza"],
+            "aparicion": 2001
+        },
+        {
+            "label": "Neptune",
+            "imagen": "https://static.wikia.nocookie.net/onepiece/images/4/40/Neptune_Anime_Infobox.png",
+            "genero": "Masculino",
+            "especie": "Tritón",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.no,
+            "edad": 70,
+            "ocupacion": ["Realeza"],
+            "aparicion": 2012
+        },
+        {
+            "label": "Shirahoshi",
+            "imagen": "https://i.pinimg.com/564x/2d/81/03/2d81035f3f30461024dca37726522d70.jpg",
+            "genero": "Femenino",
+            "especie": "Sirena",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.no,
+            "edad": 16,
+            "ocupacion": ["Realeza"],
+            "aparicion": 2012
+        },
+        {
+            "label": "Judge",
+            "imagen": "https://static.wikia.nocookie.net/onepiece/images/6/6f/Vinsmoke_Judge_Anime_Infobox.png",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "North Blue",
+            "fruta": state.no,
+            "recompensa": state.no,
+            "edad": 56,
+            "ocupacion": ["Realeza", "Cientifico"],
+            "aparicion": 2017
+        },
+        {
+            "label": "Ryuma",
+            "imagen": "https://static.wikia.nocookie.net/onepiece/images/6/6a/Shimotsuki_Ryuma_Anime_Infobox.png",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.no,
+            "edad": 47,
+            "ocupacion": ["Samurai", "Espadachin"],
+            "aparicion": 2008
         }
+
     ]
 }
 
