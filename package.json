@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://alejolac.github.io/piecedle/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d main dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -35,4 +36,5 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "vite": "^5.0.8"
   }
+  
 }
