@@ -26,7 +26,6 @@ function App() {
   const [data, setData] = useState(null);
   const autocompleteRef = useRef();
 
-
   useEffect(() => {
     if (!win) confetti()
   }, [win])
@@ -36,10 +35,22 @@ function App() {
   }, [data])
 
   function sortCharacters() {
-    let data = Data.personajes
-    data = data.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
+    const data = Data.personajes.map((option) => {
+      const firstLetter = option.label[0].toUpperCase();
+      return {
+        firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+        ...option
+      }
+    })
     return data
   }
+
+  const customFilterOptions = (options, { inputValue }) => {
+    const inputLowerCase = inputValue.toLowerCase();
+    return options.filter((option) =>
+      option.label.toLowerCase().startsWith(inputLowerCase)
+    );
+  };
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
@@ -118,13 +129,13 @@ function App() {
             {
               win && (
                 <Autocomplete
-                  ref={autocompleteRef}
-                  options={noCheck}
+                  filterOptions={customFilterOptions}
+                  options={noCheck.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                   id="combo-box-demo"
+                  groupBy={(option) => option.firstLetter}
                   value={value}
                   noOptionsText={"No se a encontrado ese Personaje"}
                   onChange={(event, value) => {
-                    console.log("asasddas");
                     setValue(value)
                     handleState(value)
                   }}
@@ -155,6 +166,7 @@ function App() {
                       }}
                     />
                   )} />
+                  
               )
             }
           </div>
@@ -239,7 +251,7 @@ function App() {
                     {siCheck.map((item, index) => (
                       <div className='item' key={item.label}>
                         {Object.entries(item).map(([key, val]) => (
-                          key !== "label" && (
+                          key !== "label" && key !== "firstLetter"  && (
                             <div key={uuidv4()} className={checkValue(key, siCheck, index)}>
                               <div className="content">
                                 {handleValues(key, val, item.label)}

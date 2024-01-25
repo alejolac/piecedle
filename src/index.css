@@ -63,3 +63,7 @@ body:not(h1, label, input, span, p, input, legend)::before {
 .MuiButtonBase-root {
   color: white!important;
 }
+
+.css-esv6et-MuiListSubheader-root-MuiAutocomplete-groupLabel {
+  background-color: #19293a!important;
+}
