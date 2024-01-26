@@ -1,3 +1,54 @@
+/** GLOBAL STYLES **/ 
+.MuiPaper-root  {
+  background-color: #1e2935!important;
+  color: white!important;
+}
+
+.MuiTooltip-popper[data-popper-placement*="bottom"] .css-1k51tf5-MuiTooltip-tooltip {
+  font-size: 14px!important;
+}
+
+.css-9e5uuu-MuiPaper-root-MuiAutocomplete-paper {
+  border-radius: 0!important;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  color: #A5A7A9!important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #424242;
+}
+
+.css-1wuilmg-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
+  font-size: 16px;
+  color: white;
+  font-family: monospace !important;
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+  color: white!important;
+}
+
+.MuiButtonBase-root {
+  color: white!important;
+}
+
+.css-esv6et-MuiListSubheader-root-MuiAutocomplete-groupLabel {
+  background-color: #19293a!important;
+  color: rgb(204, 203, 203)!important;
+  font-size: 14px!important;
+}
+
+
 .container {
   display: flex;
   justify-content: center;
