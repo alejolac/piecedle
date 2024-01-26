@@ -52,19 +52,51 @@ function App() {
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
-    console.log(Data.personajes.length);
+    //console.log(Data.personajes.length);
     return Data.personajes[val]
+  }
+
+  const rewardCh = (val) => {
+    if (val >= 1000000) {
+      return (val / 1000000).toFixed(0) + 'M';
+    }
+    else if (val >= 1000) {
+      return (val / 1000).toFixed(0) + 'K';
+    }
+    else {
+      return val
+    }
   }
 
   function checkValue(data, obj, index) {
     let characterValue = character[data];
     let objValues = obj[index][data];
 
+    if (data == "recompensa") {
+      if (characterValue >= 1000000) {
+        characterValue = (characterValue / 1000000).toFixed(0)
+      } 
+      else if (characterValue >= 1000) {
+        characterValue = (characterValue / 1000).toFixed(0)
+      }
+
+      if (objValues >= 1000000) {
+        objValues = (objValues / 1000000).toFixed(0)
+      } 
+      else if (objValues >= 1000) {
+        objValues = (objValues / 1000).toFixed(0)
+      }
+      console.log(characterValue);
+    console.log(objValues);
+    }
+    
+
     if (data == "imagen") return "item-div"
     ////
     if (objValues == characterValue) return "item-div item-div-success"
     ////
     if (data == "recompensa" || data == "edad" || data == "aparicion") {
+     
       if (typeof (objValues) == "string" || typeof (characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
@@ -88,6 +120,14 @@ function App() {
         <img className='item-img' src={val} alt={val} />
       </Tooltip>
     )
+
+    if (key === "recompensa") {
+      return (
+        <p>
+          {rewardCh(val)}
+        </p>
+      )
+    }
 
     if (Array.isArray(val) && val.length > 1) {
       return (
