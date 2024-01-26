@@ -64,7 +64,11 @@ body:not(h1, label, input, span, p, input, legend)::before {
   color: white!important;
 }
 
-.css-esv6et-MuiListSubheader-root-MuiAutocomplete-groupLabel {
+.MuiInputLabel-root {
+  color: rgb(189, 188, 188)!important;
+}
+
+.MuiListSubheader-root {
   background-color: #19293a!important;
   color: rgb(204, 203, 203)!important;
   font-size: 14px!important;
