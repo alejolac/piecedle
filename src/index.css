@@ -9,6 +9,10 @@ html {
   position: relative;
 }
 
+* {
+  color: white!important;
+}
+
 body:not(h1, label, input, span, p, input, legend)::before {
   /* Aplica el fondo oscuro solo al body, excluyendo el h1 */
   content: "";
