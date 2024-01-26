@@ -9,6 +9,10 @@ html {
   position: relative;
 }
 
+* {
+  color: white!important;
+}
+
 body:not(h1, label, input, span, p, input, legend)::before {
   /* Aplica el fondo oscuro solo al body, excluyendo el h1 */
   content: "";
@@ -51,13 +55,21 @@ body:not(h1, label, input, span, p, input, legend)::before {
 }
 
 .css-1wuilmg-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
-  font-size: 16px;
-  color: white;
+  font-size: 16px!important;
+  color: white!important;
   font-family: monospace !important;
 }
 
 .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
   color: white!important;
+}
+
+.MuiListSubheader-root {
+  font-size: 14px!important;
+}
+
+.MuiFormLabel-root {
+  font-size: 14px!important;
 }
 
 .MuiButtonBase-root {

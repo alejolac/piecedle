@@ -129,6 +129,7 @@ function App() {
             {
               win && (
                 <Autocomplete
+                open={true}
                   filterOptions={customFilterOptions}
                   options={noCheck.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                   id="combo-box-demo"
@@ -157,7 +158,7 @@ function App() {
                   renderInput={(params, option) => (
                     <TextField
                       {...params}
-                      label="Peronaje"
+                      label="Personaje"
                       InputProps={{
                         ...params.InputProps,
                       }}
