@@ -136,7 +136,7 @@ const data = {
         },
         {
             "label": "Shanks",
-            "imagen": "https://lh3.googleusercontent.com/proxy/v63CPca8GgtLPgxJ9voXa7XRTerVKc3OUpkkvqigDCf9VWG7m05UfMXbLaB3na65OLvHrnevrMDf6vHglPjNXwT1BjXAYiEHiouyNX-UppIsogCZ1jOvxvRO7LL8DHmVJ3f3Bj11md22FYCGfXYhdg",
+            "imagen": "shanks.jpg",
             "genero": "Masculino",
             "especie": "Humano",
             "blue": "West Blue",

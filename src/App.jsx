@@ -52,6 +52,7 @@ function App() {
 
   function randomCharacter() {
     const val = Math.floor(Math.random() * Data.personajes.length);
+    console.log(Data.personajes.length);
     return Data.personajes[val]
   }
 
