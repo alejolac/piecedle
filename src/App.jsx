@@ -130,7 +130,6 @@ function App() {
               win && (
                 <Autocomplete
                   filterOptions={customFilterOptions}
-                  open={open}
                   options={noCheck.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                   id="combo-box-demo"
                   groupBy={(option) => option.firstLetter}
