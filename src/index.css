@@ -5,7 +5,7 @@ html {
   background-image: url("../public/fondo3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  background-attachment: fixed;
   position: relative;
 }
 

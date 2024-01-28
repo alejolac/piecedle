@@ -1,3 +1,25 @@
+/** Modal **/
+
+.cuadrado-father {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 26px;
+}
+
+.cuadrado-son {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cuadrado {
+  width: 60px; 
+  height: 60px;
+  border-radius: 2px; 
+}
+
+/**************************/
+
 .container {
   display: flex;
   justify-content: center;
@@ -27,10 +49,10 @@
 .item-div {
   position: relative;
   margin: 2px;
-  border: 1px solid hsla(0,0%,100%,.59);
+  border: 1px solid hsla(0, 0%, 100%, 0.5);
   box-sizing: border-box;
   transition: flex-basis .1s ease;
-  flex-basis: calc(5.8% - 22px);
+  flex-basis: calc(6.1% - 22px);
 }
 
 .item-div-cat  .content{
@@ -60,10 +82,6 @@
   box-shadow: inset 0 0 6px #000;
 }
 
-.content p {
-  font-size: 14px!important;
-}
-
 .content-cat {
   display: flex;
   flex-direction: column;
@@ -79,7 +97,7 @@
 }
 
 .content p {
-  font-size: 16px;
+  font-size: 13px!important;
 }
 
 .item-img {
@@ -90,15 +108,19 @@
 }
 
 .item-div-error {
-  background-color: rgb(207, 0, 0);
+  background-color: rgba(177, 3, 3, 0.808);
 }
 
 .item-div-success {
-  background-color: #07aa25;
+  background-color: #03a721d2;
 }
 
 .item-div-regular {
-  background-color: #da820c  
+  background-color: rgb(255 115 0)  
+}
+
+.item-div-regular-2 {
+  background-color: rgb(255 195 0 / 92%);
 }
 
 .item-div-top {
@@ -141,4 +163,13 @@
   z-index: -1;
   opacity: 1;
   transition: background-color .3s ease;
+}
+
+.corner-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #ffffff; /* Cambia esto al color que desees */
+  padding: 2px;
+  cursor: pointer;
 }

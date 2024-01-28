@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import Data from "./assets/data.jsx"
 import { v4 as uuidv4 } from 'uuid';
@@ -9,28 +9,33 @@ import TextField from '@mui/material/TextField';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Avatar from "@mui/material/Avatar"
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip';
-import Button from "@mui/material/Button"
+import Modal from "./components/modal.jsx"
+import HelpSharpIcon from '@mui/icons-material/HelpSharp';
 
 import confetti from 'canvas-confetti';
 
 function App() {
   const [win, setWin] = useState(true)
-  const [character, setCharacter] = useState(randomCharacter())
+  const [character, setCharacter] = useState(null)
   const [noCheck, setNoCheck] = useState(sortCharacters())
   const [siCheck, setsiCheck] = useState([])
   const [parent, enableAnimations] = useAutoAnimate()
   const [value, setValue] = useState(null);
   const [data, setData] = useState(null);
+  const [modalState, setModalState] = useState(false)
 
   useEffect(() => {
     if (!win) confetti()
   }, [win])
 
   useEffect(() => {
-    setValue("")
+    if (value != null) setValue("")
   }, [data])
+
+  useEffect(() => {
+    setCharacter(randomCharacter())
+  }, [])
 
   function sortCharacters() {
     const data = Data.personajes.map((option) => {
@@ -51,9 +56,14 @@ function App() {
   };
 
   function randomCharacter() {
-    const val = Math.floor(Math.random() * Data.personajes.length);
-    //console.log(Data.personajes.length);
-    return Data.personajes[val]
+    const randomId = Math.floor(Math.random() * Data.personajes.length) + 1;
+    const randomCharacter = Data.personajes.find(character => character.id === randomId);
+
+    return randomCharacter;
+  }
+
+  const closeModal = () => {
+    setModalState(false)
   }
 
   const rewardCh = (val) => {
@@ -74,40 +84,42 @@ function App() {
 
     if (data == "recompensa") {
       if (characterValue >= 1000000) {
-        characterValue = (characterValue / 1000000).toFixed(0)
-      } 
-      else if (characterValue >= 1000) {
-        characterValue = (characterValue / 1000).toFixed(0)
+        characterValue = Math.floor(characterValue / 1000000);
+      } else if (characterValue >= 1000) {
+        characterValue = Math.floor(characterValue / 1000);
       }
 
       if (objValues >= 1000000) {
-        objValues = (objValues / 1000000).toFixed(0)
-      } 
-      else if (objValues >= 1000) {
-        objValues = (objValues / 1000).toFixed(0)
+        objValues = Math.floor(objValues / 1000000);
+      } else if (objValues >= 1000) {
+        objValues = Math.floor(objValues / 1000);
       }
-      console.log(characterValue);
-    console.log(objValues);
     }
-    
 
     if (data == "imagen") return "item-div"
     ////
     if (objValues == characterValue) return "item-div item-div-success"
+    if (data == "ocupacion") {
+      if (characterValue.every(ocupacion => objValues.includes(ocupacion))) return "item-div item-div-success"
+    }
     ////
     if (data == "recompensa" || data == "edad" || data == "aparicion") {
-     
       if (typeof (objValues) == "string" || typeof (characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }
     ////
     if (Array.isArray(characterValue) || Array.isArray(objValues)) {
-      if (Array.isArray(characterValue) != Array.isArray(objValues)) {
-        Array.isArray(characterValue) ? objValues = [objValues] : characterValue = [characterValue]
+      if (Array.isArray(characterValue) !== Array.isArray(objValues)) {
+        Array.isArray(characterValue) ? (objValues = [objValues]) : (characterValue = [characterValue]);
       }
-      const hasCommonValue = objValues.some(val => characterValue.includes(val));
-      if (hasCommonValue) {
+      const numberOfCommonValues = objValues
+        .flat()
+        .filter((val) => (Array.isArray(characterValue) ? characterValue.flat().includes(val) : characterValue.includes(val)))
+        .length;
+      if (numberOfCommonValues === 1) {
         return "item-div item-div-regular";
+      } else if (numberOfCommonValues >= 2) {
+        return "item-div item-div-regular-2";
       }
     }
     return "item-div item-div-error";
@@ -142,24 +154,27 @@ function App() {
   }
 
   function handleState(objeto) {
-    console.log(character);
-    console.log(objeto);
     if (!objeto) {
       console.error("Objeto no definido");
       return;
     }
-    const newSi = [...siCheck]
-    ////
-    const newNo = noCheck.filter(item => item.label !== objeto.label)
-    newSi.unshift(objeto)
-    ////
-    setNoCheck(newNo)
-    setsiCheck(newSi)
-    ////
-    objeto.label == character.label ? setWin(false) : setWin(true)
-    setData(objeto)
-    return
+    if (!siCheck.some(item => item.label === objeto.label)) {
+      const newSi = [...siCheck];
+      const newNo = noCheck.filter(item => item.label !== objeto.label);
+      newSi.unshift(objeto);
+
+      setNoCheck(newNo);
+      setsiCheck(newSi);
+
+      objeto.label === character.label ? setWin(false) : setWin(true);
+      setData(objeto);
+    }
   }
+
+  const handleChange = useCallback((event, value) => {
+    setValue(value);
+    handleState(value);
+  }, [handleState]);
 
   return (
     <>
@@ -176,10 +191,7 @@ function App() {
                   groupBy={(option) => option.firstLetter}
                   value={value}
                   noOptionsText={"No se a encontrado ese Personaje"}
-                  onChange={(event, value) => {
-                    setValue(value)
-                    handleState(value)
-                  }}
+                  onChange={handleChange}
                   isOptionEqualToValue={(option, value) => option.label !== value}
                   renderOption={(props, option) => (
                     <Box
@@ -207,7 +219,6 @@ function App() {
                       }}
                     />
                   )} />
-                  
               )
             }
           </div>
@@ -292,11 +303,14 @@ function App() {
                     {siCheck.map((item, index) => (
                       <div className='item' key={item.label}>
                         {Object.entries(item).map(([key, val]) => (
-                          key !== "label" && key !== "firstLetter"  && (
+                          key !== "label" && key !== "firstLetter" && key !== "id" && (
                             <div key={uuidv4()} className={checkValue(key, siCheck, index)}>
                               <div className="content">
                                 {handleValues(key, val, item.label)}
                               </div>
+                              {key == "ocupacion" && index == 0 && (
+                                <div onClick={() => setModalState(1)} className="corner-element"><HelpSharpIcon /></div>
+                              )}
                             </div>
                           )
                         ))}
@@ -309,6 +323,9 @@ function App() {
           </div>
         </div>
       )}
+      <div>
+        <Modal close={closeModal} state={modalState} />
+      </div>
     </>
   )
 }
