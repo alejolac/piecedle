@@ -104,6 +104,7 @@ function App() {
     }
     ////
     if (data == "recompensa" || data == "edad" || data == "aparicion") {
+      //console.log(data ,characterValue, objValues);
       if (typeof (objValues) == "string" || typeof (characterValue) == "string") return "item-div item-div-error";
       return characterValue > objValues ? "item-div item-div-top item-div-error" : "item-div item-div-down item-div-error"
     }

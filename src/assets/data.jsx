@@ -117,7 +117,7 @@ const data = {
             "recompensa": state.unknow,
             "edad": 55,
             "ocupacion": ["Revolucionario"],
-            "Aparicion": 2000
+            "aparicion": 2000
         },
         {
             "id": 27,
@@ -186,19 +186,6 @@ const data = {
         },
         {
             "id": 37,
-            "label": "Morgan",
-            "imagen": "https://static.wikia.nocookie.net/onepiece/images/e/e5/Morgan_Anime_Infobox.png",
-            "genero": "Masculino",
-            "especie": "Humano",
-            "blue": "East Blue",
-            "fruta": state.no,
-            "recompensa": state.no,
-            "edad": 44,
-            "ocupacion": ["Marine"],
-            "aparicion": 1999
-        },
-        {
-            "id": 38,
             "label": "Morgan",
             "imagen": "https://static.wikia.nocookie.net/onepiece/images/e/e5/Morgan_Anime_Infobox.png",
             "genero": "Masculino",
@@ -367,7 +354,7 @@ const data = {
             "aparicion": 2000
         },
         {
-            "id": 50,
+            "id": 51,
             "label": "Tashigi",
             "imagen": "https://static.wikia.nocookie.net/saintpirates/images/4/4d/Tashigi.png",
             "genero": "Femenino",
@@ -380,6 +367,20 @@ const data = {
             "aparicion": 2000
         },
         //////////////////////////////////
+        // Saga Arabasta
+        {
+            "id": 38,
+            "label": "Crocus",
+            "imagen": "https://www.nautiljon.com/images/perso/00/00/crocus_200.webp",
+            "genero": "Masculino",
+            "especie": "Humano",
+            "blue": "Grand Line",
+            "fruta": state.no,
+            "recompensa": state.unknow,
+            "edad": 73,
+            "ocupacion": ["Pirata", "Medico"],
+            "aparicion": 2001
+        },
         {
             "id": 6,
             "label": "Brook",

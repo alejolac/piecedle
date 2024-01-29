@@ -173,3 +173,11 @@
   padding: 2px;
   cursor: pointer;
 }
+
+.corner-element svg {
+  transition: 0.2s ease-in-out;
+}
+
+.corner-element:hover svg {
+  color: rgb(168, 168, 168);
+}

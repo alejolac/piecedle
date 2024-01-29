@@ -9,7 +9,7 @@ html {
   position: relative;
 }
 
-* {
+*:not(svg, path) {
   color: white!important;
 }
 
